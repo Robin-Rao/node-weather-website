@@ -2,8 +2,10 @@ const path = require('path')
 const express = require('express')
 const geocode = require('./utils/geocode')
 const forecast =  require('./utils/forecast')
+
 const hbs = require('hbs')
 const app = express ()
+const port = process.env.PORT || 3000
 const directorypath = path.join(__dirname,'../public')
 const viewspath = path.join(__dirname,'../templates/views')
 const partialsPath= path.join(__dirname,'../templates/partials')
@@ -65,6 +67,6 @@ geocode(req.query.address, (error, { latitude, longitude, location }={}) => {
 app.get('*',(req,res) =>{
     res.send('404')
 })
-app.listen(3000,()=>{
-    console.log('server is up and running')
+app.listen(port,()=>{
+    console.log('server is on port' + port)
 })
